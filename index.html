@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velmora - Empowering Rural Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background: #0f172a;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .auth-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .auth-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 0.5rem;
+            min-width: 150px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1rem;
+            color: #e2e8f0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #334155;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23fff" stop-opacity=".1"/><stop offset="100%" stop-color="%23fff" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="100" r="50" fill="url(%23a)"/><circle cx="300" cy="200" r="30" fill="url(%23a)"/><circle cx="600" cy="150" r="40" fill="url(%23a)"/><circle cx="800" cy="300" r="35" fill="url(%23a)"/><circle cx="200" cy="400" r="45" fill="url(%23a)"/><circle cx="700" cy="500" r="25" fill="url(%23a)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(0px); }
+            50% { transform: translateX(100px) translateY(-50px); }
+            100% { transform: translateX(-100px) translateY(0px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Community Section */
+        .community-section {
+            padding: 6rem 2rem 4rem;
+            background: #0f172a;
+            min-height: 100vh;
+        }
+
+        .community-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #e2e8f0;
+            font-weight: 700;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        /* Create Post */
+        .create-post-card {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #334155;
+        }
+
+        .create-post-input {
+            width: 100%;
+            padding: 1rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .create-post-input::placeholder {
+            color: #64748b;
+        }
+
+        .create-post-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .create-post-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .create-post-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Posts Feed */
+        .posts-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .post-card {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .post-meta {
+            flex: 1;
+        }
+
+        .post-author {
+            font-weight: 600;
+            color: #60a5fa;
+        }
+
+        .post-time {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .post-content {
+            color: #e2e8f0;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .action-button {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: #334155;
+            color: #e2e8f0;
+        }
+
+        .action-button.upvoted {
+            color: #3b82f6;
+        }
+
+        .action-button.downvoted {
+            color: #ef4444;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+        }
+
+        .comment-input-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 0.75rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-family: inherit;
+        }
+
+        .comment-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .comment-button:hover {
+            background: #2563eb;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .comment {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #60a5fa;
+            font-size: 0.9rem;
+        }
+
+        .comment-time {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .comment-content {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-card {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+        }
+
+        .sidebar-card h3 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .sidebar-stat:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+        }
+
+        .stat-value {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #334155;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-family: inherit;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #e2e8f0;
+        }
+
+        .modal-switch {
+            text-align: center;
+            margin-top: 1rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .modal-switch a {
+            color: #3b82f6;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .modal-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Features Slider */
+        .features-section {
+            padding: 4rem 2rem;
+            background: #1e293b;
+        }
+
+        .slider-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 3rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .slide p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .slider-nav {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #475569;
+            display: inline-block;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #3b82f6;
+            transform: scale(1.3);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 2rem;
+            background: #0f172a;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #e2e8f0;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border: 1px solid #334155;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #3b82f6;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            color: white;
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #3b82f6;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+            color: white;
+            font-family: inherit;
+            border: 1px solid #334155;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #64748b;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .slide {
+                padding: 2rem 1rem;
+            }
+
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Velmora</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                    <li class="nav-item"><a href="#community" class="nav-link">Community</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item" id="authButtonContainer">
+                        <button class="auth-button" id="loginButton">Sign In</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Empowering Rural Education</h1>
+            <p>Breaking barriers with AI-powered learning, multimodal content, and community-driven education for every rural learner.</p>
+            <a href="#community" class="cta-button">Join Community</a>
+        </div>
+    </section>
+
+    <!-- Features Slider -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Comprehensive Learning Solutions</h2>
+        <div class="slider-container">
+            <div class="slider" id="featuresSlider">
+                <div class="slide">
+                    <h3>📚 Complete Class Materials</h3>
+                    <p>Comprehensive educational content for every class level, designed specifically for rural learning environments with locally relevant examples and context.</p>
+                </div>
+                <div class="slide">
+                    <h3>👥 Community Learning Platform</h3>
+                    <p>Connect with peers, teachers, and mentors through our Reddit-style community platform. Share knowledge, ask questions, and learn together.</p>
+                </div>
+                <div class="slide">
+                    <h3>🎥 Multimodal Content</h3>
+                    <p>Learn through videos, interactive simulations, audio lessons, and visual aids designed to accommodate different learning styles and preferences.</p>
+                </div>
+                <div class="slide">
+                    <h3>🌍 Multilingual Support</h3>
+                    <p>Access content in multiple regional languages to ensure education is truly accessible to every learner in their preferred language.</p>
+                </div>
+                <div class="slide">
+                    <h3>📱 Offline Downloads</h3>
+                    <p>Download lessons, videos, and materials for offline access. Learn anytime, anywhere, even without internet connectivity.</p>
+                </div>
+                <div class="slide">
+                    <h3>🛤️ Personalized Learning Paths</h3>
+                    <p>AI-powered adaptive learning paths that adjust to each student's pace, strengths, and areas for improvement.</p>
+                </div>
+                <div class="slide">
+                    <h3>🤖 AI Tutor Assistant</h3>
+                    <p>24/7 AI tutor support for instant help with homework, concept clarification, and personalized learning recommendations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <span class="nav-dot active" data-slide="0"></span>
+            <span class="nav-dot" data-slide="1"></span>
+            <span class="nav-dot" data-slide="2"></span>
+            <span class="nav-dot" data-slide="3"></span>
+            <span class="nav-dot" data-slide="4"></span>
+            <span class="nav-dot" data-slide="5"></span>
+            <span class="nav-dot" data-slide="6"></span>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section" id="community">
+        <div class="community-container">
+            <h2 class="section-title">Learning Community</h2>
+            
+            <div class="community-grid">
+                <div class="main-content">
+                    <!-- Create Post Card -->
+                    <div class="create-post-card" id="createPostCard" style="display: none;">
+                        <textarea class="create-post-input" id="postContent" placeholder="Share your thoughts, ask questions, or start a discussion..."></textarea>
+                        <button class="create-post-button" id="createPostButton">Post to Community</button>
+                    </div>
+
+                    <!-- Posts Feed -->
+                    <div class="posts-feed" id="postsFeed">
+                        <div class="loading">Loading posts...</div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar-card">
+                        <h3>Community Stats</h3>
+                        <div class="sidebar-stat">
+                            <span class="stat-label">Total Posts</span>
+                            <span class="stat-value" id="totalPosts">0</span>
+                        </div>
+                        <div class="sidebar-stat">
+                            <span class="stat-label">Total Members</span>
+                            <span class="stat-value" id="totalMembers">0</span>
+                        </div>
+                        <div class="sidebar-stat">
+                            <span class="stat-label">Active Today</span>
+                            <span class="stat-value" id="activeToday">0</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Community Guidelines</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">
+                            • Be respectful and kind<br>
+                            • Share knowledge freely<br>
+                            • Ask questions without hesitation<br>
+                            • Help fellow learners<br>
+                            • Stay on topic
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2>About Velmora</h2>
+            <p>Velmora is more than just an educational platform—it's a movement to bridge the digital divide and bring world-class education to rural communities. We believe that every student, regardless of their location, deserves access to quality education that empowers them to achieve their dreams.</p>
+            <p>Our platform combines cutting-edge technology with deep understanding of rural educational needs, creating a comprehensive ecosystem that supports learners, teachers, and communities alike.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">-</span>
+                    <span class="stat-label">Active Learners</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">-</span>
+                    <span class="stat-label">Rural Schools</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">23</span>
+                    <span class="stat-label">Languages Supported</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">-</span>
+                    <span class="stat-label">Student Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>📧 123@gmail.com</p>
+                <p>📞 +91 123 456 7890</p>
+                <p>📍 Ludhiana, Punjab, India</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#community">Community</a>
+                <a href="#about">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Send us a Message</h3>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Velmora. All rights reserved. Empowering rural education through technology.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <h2 class="modal-title" id="modalTitle">Sign In</h2>
+            <div id="errorMessage" style="display: none;" class="error-message"></div>
+            
+            <form id="authForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="emailInput" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="passwordInput" required>
+                </div>
+                <div class="form-group" id="usernameGroup" style="display: none;">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" id="usernameInput">
+                </div>
+                <button type="submit" class="form-button" id="authSubmitButton">Sign In</button>
+            </form>
+            
+            <div class="modal-switch">
+                <span id="switchText">Don't have an account? </span>
+                <a id="switchLink">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, doc, updateDoc, increment, getDoc, setDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+        // ============================================
+        // FIREBASE CONFIGURATION
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyC40tIDdTrmjAZ8GOMCNLww7xndvuiL-Zk",
+            authDomain: "velmoraai.firebaseapp.com",
+            projectId: "velmoraai",
+            storageBucket: "velmoraai.firebasestorage.app",
+            messagingSenderId: "527255659727",
+            appId: "1:527255659727:web:56d83144546bd504b883ba",
+            measurementId: "G-6KN5XJ0DWP"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        let currentUser = null;
+        let isSignUpMode = false;
+        let userVotes = {};
+
+        // ============================================
+        // DOM ELEMENTS
+        // ============================================
+        const authModal = document.getElementById('authModal');
+        const loginButton = document.getElementById('loginButton');
+        const modalClose = document.getElementById('modalClose');
+        const authForm = document.getElementById('authForm');
+        const switchLink = document.getElementById('switchLink');
+        const modalTitle = document.getElementById('modalTitle');
+        const authSubmitButton = document.getElementById('authSubmitButton');
+        const switchText = document.getElementById('switchText');
+        const usernameGroup = document.getElementById('usernameGroup');
+        const errorMessage = document.getElementById('errorMessage');
+        const createPostCard = document.getElementById('createPostCard');
+        const createPostButton = document.getElementById('createPostButton');
+        const postContent = document.getElementById('postContent');
+        const postsFeed = document.getElementById('postsFeed');
+        const authButtonContainer = document.getElementById('authButtonContainer');
+
+        // ============================================
+        // AUTH FUNCTIONS
+        // ============================================
+        function showModal() {
+            authModal.classList.add('show');
+        }
+
+        function hideModal() {
+            authModal.classList.remove('show');
+            errorMessage.style.display = 'none';
+            authForm.reset();
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function toggleAuthMode() {
+            isSignUpMode = !isSignUpMode;
+            if (isSignUpMode) {
+                modalTitle.textContent = 'Create Account';
+                authSubmitButton.textContent = 'Sign Up';
+                switchText.textContent = 'Already have an account? ';
+                switchLink.textContent = 'Sign In';
+                usernameGroup.style.display = 'block';
+            } else {
+                modalTitle.textContent = 'Sign In';
+                authSubmitButton.textContent = 'Sign In';
+                switchText.textContent = "Don't have an account? ";
+                switchLink.textContent = 'Sign Up';
+                usernameGroup.style.display = 'none';
+            }
+            errorMessage.style.display = 'none';
+        }
+
+        async function handleAuth(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const username = document.getElementById('usernameInput').value;
+
+            try {
+                if (isSignUpMode) {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    await updateProfile(userCredential.user, {
+                        displayName: username || email.split('@')[0]
+                    });
+                    
+                    // Create user document in Firestore
+                    await setDoc(doc(db, 'users', userCredential.user.uid), {
+                        username: username || email.split('@')[0],
+                        email: email,
+                        createdAt: serverTimestamp(),
+                        postsCount: 0,
+                        commentsCount: 0
+                    });
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+                hideModal();
+            } catch (error) {
+                console.error('Auth error:', error);
+                showError(error.message);
+            }
+        }
+
+        function updateUIForUser(user) {
+            if (user) {
+                currentUser = user;
+                const displayName = user.displayName || user.email.split('@')[0];
+                const initial = displayName.charAt(0).toUpperCase();
+                
+                authButtonContainer.innerHTML = `
+                    <div class="user-menu">
+                        <div class="user-avatar" id="userAvatar">${initial}</div>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-item" style="font-weight: 600; color: #60a5fa;">${displayName}</div>
+                            <div class="dropdown-item" id="logoutButton">Sign Out</div>
+                        </div>
+                    </div>
+                `;
+                
+                createPostCard.style.display = 'block';
+                
+                // Dropdown functionality
+                document.getElementById('userAvatar').addEventListener('click', () => {
+                    document.getElementById('dropdownMenu').classList.toggle('show');
+                });
+                
+                document.getElementById('logoutButton').addEventListener('click', async () => {
+                    await signOut(auth);
+                });
+                
+                // Load user votes
+                loadUserVotes();
+            } else {
+                currentUser = null;
+                authButtonContainer.innerHTML = '<button class="auth-button" id="loginButton">Sign In</button>';
+                document.getElementById('loginButton').addEventListener('click', showModal);
+                createPostCard.style.display = 'none';
+            }
+        }
+
+        // ============================================
+        // COMMUNITY FUNCTIONS
+        // ============================================
+        async function loadUserVotes() {
+            if (!currentUser) return;
+            
+            const votesRef = collection(db, 'votes');
+            const q = query(votesRef);
+            const snapshot = await getDocs(q);
+            
+            userVotes = {};
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                if (data.userId === currentUser.uid) {
+                    userVotes[data.postId] = data.voteType;
+                }
+            });
+        }
+
+        async function createPost() {
+            if (!currentUser) {
+                showModal();
+                return;
+            }
+
+            const content = postContent.value.trim();
+            if (!content) {
+                alert('Please write something before posting!');
+                return;
+            }
+
+            try {
+                createPostButton.disabled = true;
+                createPostButton.textContent = 'Posting...';
+
+                await addDoc(collection(db, 'posts'), {
+                    content: content,
+                    authorId: currentUser.uid,
+                    authorName: currentUser.displayName || currentUser.email.split('@')[0],
+                    createdAt: serverTimestamp(),
+                    upvotes: 0,
+                    downvotes: 0,
+                    commentsCount: 0
+                });
+
+                postContent.value = '';
+                createPostButton.disabled = false;
+                createPostButton.textContent = 'Post to Community';
+            } catch (error) {
+                console.error('Error creating post:', error);
+                alert('Failed to create post. Please try again.');
+                createPostButton.disabled = false;
+                createPostButton.textContent = 'Post to Community';
+            }
+        }
+
+        async function toggleVote(postId, voteType) {
+            if (!currentUser) {
+                showModal();
+                return;
+            }
+
+            const voteId = `${currentUser.uid}_${postId}`;
+            const voteRef = doc(db, 'votes', voteId);
+            const postRef = doc(db, 'posts', postId);
+            
+            try {
+                const voteDoc = await getDoc(voteRef);
+                const currentVote = userVotes[postId];
+
+                if (currentVote === voteType) {
+                    // Remove vote
+                    await setDoc(voteRef, {
+                        userId: currentUser.uid,
+                        postId: postId,
+                        voteType: null
+                    });
+                    
+                    if (voteType === 'up') {
+                        await updateDoc(postRef, { upvotes: increment(-1) });
+                    } else {
+                        await updateDoc(postRef, { downvotes: increment(-1) });
+                    }
+                    
+                    userVotes[postId] = null;
+                } else {
+                    // Add or change vote
+                    await setDoc(voteRef, {
+                        userId: currentUser.uid,
+                        postId: postId,
+                        voteType: voteType
+                    });
+                    
+                    if (currentVote === 'up') {
+                        await updateDoc(postRef, { 
+                            upvotes: increment(-1),
+                            downvotes: increment(1)
+                        });
+                    } else if (currentVote === 'down') {
+                        await updateDoc(postRef, { 
+                            upvotes: increment(1),
+                            downvotes: increment(-1)
+                        });
+                    } else {
+                        if (voteType === 'up') {
+                            await updateDoc(postRef, { upvotes: increment(1) });
+                        } else {
+                            await updateDoc(postRef, { downvotes: increment(1) });
+                        }
+                    }
+                    
+                    userVotes[postId] = voteType;
+                }
+            } catch (error) {
+                console.error('Error voting:', error);
+            }
+        }
+
+        function toggleComments(postId) {
+            const commentsSection = document.getElementById(`comments-${postId}`);
+            if (commentsSection.style.display === 'none') {
+                commentsSection.style.display = 'block';
+                loadComments(postId);
+            } else {
+                commentsSection.style.display = 'none';
+            }
+        }
+
+        async function addComment(postId) {
+            if (!currentUser) {
+                showModal();
+                return;
+            }
+
+            const commentInput = document.getElementById(`comment-input-${postId}`);
+            const content = commentInput.value.trim();
+            
+            if (!content) return;
+
+            try {
+                await addDoc(collection(db, 'comments'), {
+                    postId: postId,
+                    content: content,
+                    authorId: currentUser.uid,
+                    authorName: currentUser.displayName || currentUser.email.split('@')[0],
+                    createdAt: serverTimestamp()
+                });
+
+                await updateDoc(doc(db, 'posts', postId), {
+                    commentsCount: increment(1)
+                });
+
+                commentInput.value = '';
+            } catch (error) {
+                console.error('Error adding comment:', error);
+            }
+        }
+
+        function loadComments(postId) {
+            const commentsList = document.getElementById(`comments-list-${postId}`);
+            
+            const commentsQuery = query(
+                collection(db, 'comments'),
+                orderBy('createdAt', 'desc')
+            );
+
+            onSnapshot(commentsQuery, (snapshot) => {
+                const comments = snapshot.docs
+                    .map(doc => ({ id: doc.id, ...doc.data() }))
+                    .filter(comment => comment.postId === postId);
+
+                if (comments.length === 0) {
+                    commentsList.innerHTML = '<div style="color: #64748b; text-align: center; padding: 1rem;">No comments yet. Be the first to comment!</div>';
+                    return;
+                }
+
+                commentsList.innerHTML = comments.map(comment => `
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.authorName}</span>
+                            <span class="comment-time">${formatTime(comment.createdAt)}</span>
+                        </div>
+                        <div class="comment-content">${escapeHtml(comment.content)}</div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function renderPosts(posts) {
+            if (posts.length === 0) {
+                postsFeed.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💬</div>
+                        <h3>No posts yet</h3>
+                        <p>Be the first to start a discussion!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            postsFeed.innerHTML = posts.map(post => {
+                const userVote = userVotes[post.id];
+                const score = (post.upvotes || 0) - (post.downvotes || 0);
+                
+                return `
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="post-avatar">${post.authorName.charAt(0).toUpperCase()}</div>
+                            <div class="post-meta">
+                                <div class="post-author">${post.authorName}</div>
+                                <div class="post-time">${formatTime(post.createdAt)}</div>
+                            </div>
+                        </div>
+                        <div class="post-content">${escapeHtml(post.content)}</div>
+                        <div class="post-actions">
+                            <button class="action-button ${userVote === 'up' ? 'upvoted' : ''}" onclick="window.toggleVote('${post.id}', 'up')">
+                                ▲ ${score}
+                            </button>
+                            <button class="action-button ${userVote === 'down' ? 'downvoted' : ''}" onclick="window.toggleVote('${post.id}', 'down')">
+                                ▼
+                            </button>
+                            <button class="action-button" onclick="window.toggleComments('${post.id}')">
+                                💬 ${post.commentsCount || 0} Comments
+                            </button>
+                        </div>
+                        <div class="comments-section" id="comments-${post.id}" style="display: none;">
+                            <div class="comment-input-container">
+                                <input type="text" class="comment-input" id="comment-input-${post.id}" placeholder="Write a comment...">
+                                <button class="comment-button" onclick="window.addComment('${post.id}')">Comment</button>
+                            </div>
+                            <div class="comments-list" id="comments-list-${post.id}"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatTime(timestamp) {
+            if (!timestamp) return 'Just now';
+            const date = timestamp.toDate();
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000);
+
+            if (diff < 60) return 'Just now';
+            if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+            if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+            return date.toLocaleDateString();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function updateStats() {
+            try {
+                const postsSnapshot = await getDocs(collection(db, 'posts'));
+                const usersSnapshot = await getDocs(collection(db, 'users'));
+                
+                document.getElementById('totalPosts').textContent = postsSnapshot.size;
+                document.getElementById('totalMembers').textContent = usersSnapshot.size;
+                document.getElementById('activeToday').textContent = Math.floor(usersSnapshot.size * 0.3);
+            } catch (error) {
+                console.error('Error updating stats:', error);
+            }
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        function init() {
+            // Auth listeners
+            loginButton.addEventListener('click', showModal);
+            modalClose.addEventListener('click', hideModal);
+            authForm.addEventListener('submit', handleAuth);
+            switchLink.addEventListener('click', toggleAuthMode);
+            createPostButton.addEventListener('click', createPost);
+
+            // Close modal on outside click
+            authModal.addEventListener('click', (e) => {
+                if (e.target === authModal) hideModal();
+            });
+
+            // Auth state observer
+            onAuthStateChanged(auth, (user) => {
+                updateUIForUser(user);
+            });
+
+            // Load posts
+            const postsQuery = query(
+                collection(db, 'posts'),
+                orderBy('createdAt', 'desc')
+            );
+
+            onSnapshot(postsQuery, (snapshot) => {
+                const posts = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                renderPosts(posts);
+                updateStats();
+            });
+
+            // Expose functions to window for onclick handlers
+            window.toggleVote = toggleVote;
+            window.toggleComments = toggleComments;
+            window.addComment = addComment;
+
+            // Features slider
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.nav-dot');
+            const slider = document.getElementById('featuresSlider');
+
+            function showSlide(index) {
+                currentSlide = index;
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }, 5000);
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Contact form
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                this.reset();
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.backgroundColor = 'rgba(30, 58, 138, 0.95)';
+                } else {
+                    header.style.backgroundColor = 'transparent';
+                }
+            });
+        }
+
+        // Start the app
+        init();
+    </script>
+</body>
+</html>
