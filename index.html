@@ -32,7 +32,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
-.header-content {
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -49,6 +49,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             z-index: 1001;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         .nav-menu {
@@ -64,6 +70,8 @@
             cursor: pointer;
             z-index: 1001;
             padding: 0.5rem;
+            background: none;
+            border: none;
         }
 
         .hamburger span {
@@ -100,6 +108,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: block;
         }
 
         .nav-link:hover {
@@ -396,6 +405,7 @@
             display: flex;
             gap: 1rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .action-button {
@@ -436,10 +446,12 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         .comment-input {
             flex: 1;
+            min-width: 200px;
             padding: 0.75rem;
             background: #0f172a;
             border: 1px solid #334155;
@@ -481,6 +493,7 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .comment-author {
@@ -564,6 +577,7 @@
             max-width: 400px;
             width: 90%;
             border: 1px solid #334155;
+            position: relative;
         }
 
         .modal-title {
@@ -868,30 +882,95 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .hamburger {
+                display: flex;
+            }
+
             .nav-menu {
-                gap: 1rem;
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
+                padding: 2rem 0;
+                gap: 0;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                padding: 0.5rem 0;
             }
 
             .nav-link {
-                padding: 0.5rem;
-                font-size: 0.9rem;
+                display: block;
+                padding: 1rem;
+                width: 100%;
+            }
+
+            .auth-button {
+                width: 80%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .user-menu {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .user-avatar {
+                margin: 0 auto;
+            }
+
+            .dropdown-menu {
+                position: fixed;
+                right: 10%;
+                left: 10%;
+                width: 80%;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.875rem 2rem;
+                font-size: 1rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
             .slide {
                 padding: 2rem 1rem;
+            }
+
+            .slide h3 {
+                font-size: 1.5rem;
+            }
+
+            .slide p {
+                font-size: 1rem;
             }
 
             .community-grid {
@@ -901,6 +980,85 @@
             .sidebar {
                 order: -1;
             }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content h2 {
+                font-size: 1.875rem;
+            }
+
+            .about-content p {
+                font-size: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .post-card {
+                padding: 1rem;
+            }
+
+            .comment-input-container {
+                flex-direction: column;
+            }
+
+            .comment-input {
+                width: 100%;
+            }
+
+            .comment-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .cta-button {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slide {
+                padding: 1.5rem 1rem;
+            }
+
+            .slide h3 {
+                font-size: 1.25rem;
+            }
+
+            .slide p {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
@@ -909,8 +1067,13 @@
     <header>
         <div class="header-content">
             <div class="logo">Velmora</div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="navMenu">
                     <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
                     <li class="nav-item"><a href="#community" class="nav-link">Community</a></li>
@@ -924,7 +1087,6 @@
                     <li class="nav-item" id="authButtonContainer">
                         <button class="auth-button" id="loginButton">Sign In</button>
                     </li>
-            
                 </ul>
             </nav>
         </div>
@@ -1137,9 +1299,6 @@
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
         import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, doc, updateDoc, increment, getDoc, setDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
-        // ============================================
-        // FIREBASE CONFIGURATION
-        // ============================================
         const firebaseConfig = {
             apiKey: "AIzaSyC40tIDdTrmjAZ8GOMCNLww7xndvuiL-Zk",
             authDomain: "velmoraai.firebaseapp.com",
@@ -1150,21 +1309,14 @@
             measurementId: "G-6KN5XJ0DWP"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // ============================================
-        // STATE MANAGEMENT
-        // ============================================
         let currentUser = null;
         let isSignUpMode = false;
         let userVotes = {};
 
-        // ============================================
-        // DOM ELEMENTS
-        // ============================================
         const authModal = document.getElementById('authModal');
         const loginButton = document.getElementById('loginButton');
         const modalClose = document.getElementById('modalClose');
@@ -1181,9 +1333,6 @@
         const postsFeed = document.getElementById('postsFeed');
         const authButtonContainer = document.getElementById('authButtonContainer');
 
-        // ============================================
-        // AUTH FUNCTIONS
-        // ============================================
         function showModal() {
             authModal.classList.add('show');
         }
@@ -1230,7 +1379,6 @@
                         displayName: username || email.split('@')[0]
                     });
                     
-                    // Create user document in Firestore
                     await setDoc(doc(db, 'users', userCredential.user.uid), {
                         username: username || email.split('@')[0],
                         email: email,
@@ -1266,7 +1414,6 @@
                 
                 createPostCard.style.display = 'block';
                 
-                // Dropdown functionality
                 document.getElementById('userAvatar').addEventListener('click', () => {
                     document.getElementById('dropdownMenu').classList.toggle('show');
                 });
@@ -1275,19 +1422,18 @@
                     await signOut(auth);
                 });
                 
-                // Load user votes
                 loadUserVotes();
             } else {
                 currentUser = null;
                 authButtonContainer.innerHTML = '<button class="auth-button" id="loginButton">Sign In</button>';
-                document.getElementById('loginButton').addEventListener('click', showModal);
+                const newLoginButton = document.getElementById('loginButton');
+                if (newLoginButton) {
+                    newLoginButton.addEventListener('click', showModal);
+                }
                 createPostCard.style.display = 'none';
             }
         }
 
-        // ============================================
-        // COMMUNITY FUNCTIONS
-        // ============================================
         async function loadUserVotes() {
             if (!currentUser) return;
             
@@ -1356,7 +1502,6 @@
                 const currentVote = userVotes[postId];
 
                 if (currentVote === voteType) {
-                    // Remove vote
                     await setDoc(voteRef, {
                         userId: currentUser.uid,
                         postId: postId,
@@ -1371,7 +1516,6 @@
                     
                     userVotes[postId] = null;
                 } else {
-                    // Add or change vote
                     await setDoc(voteRef, {
                         userId: currentUser.uid,
                         postId: postId,
@@ -1554,28 +1698,45 @@
             }
         }
 
-        // ============================================
-        // INITIALIZATION
-        // ============================================
         function init() {
-            // Auth listeners
-            loginButton.addEventListener('click', showModal);
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+
+            if (loginButton) {
+                loginButton.addEventListener('click', showModal);
+            }
             modalClose.addEventListener('click', hideModal);
             authForm.addEventListener('submit', handleAuth);
             switchLink.addEventListener('click', toggleAuthMode);
             createPostButton.addEventListener('click', createPost);
 
-            // Close modal on outside click
             authModal.addEventListener('click', (e) => {
                 if (e.target === authModal) hideModal();
             });
 
-            // Auth state observer
             onAuthStateChanged(auth, (user) => {
                 updateUIForUser(user);
             });
 
-            // Load posts
             const postsQuery = query(
                 collection(db, 'posts'),
                 orderBy('createdAt', 'desc')
@@ -1590,12 +1751,10 @@
                 updateStats();
             });
 
-            // Expose functions to window for onclick handlers
             window.toggleVote = toggleVote;
             window.toggleComments = toggleComments;
             window.addComment = addComment;
 
-            // Features slider
             let currentSlide = 0;
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.nav-dot');
@@ -1618,7 +1777,6 @@
                 showSlide(currentSlide);
             }, 5000);
 
-            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1629,14 +1787,12 @@
                 });
             });
 
-            // Contact form
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Thank you for your message! We\'ll get back to you soon.');
                 this.reset();
             });
 
-            // Header scroll effect
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
                 if (window.scrollY > 100) {
@@ -1647,12 +1803,7 @@
             });
         }
 
-        // Start the app
         init();
     </script>
 </body>
-
 </html>
-
-
-
